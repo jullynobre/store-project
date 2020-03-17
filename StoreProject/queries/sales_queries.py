@@ -49,8 +49,14 @@ class SalesQueries:
 
     def total_sales_by_products(self, initial_date: datetime, final_date: datetime):
         sales_df = self.sales(initial_date, final_date)
+        sales_with_items_df = sales_df.set_index("id").join(self.sales_items_df.set_index("sale_id"))
+        sales_with_items_df["total_sale"] = sales_with_items_df["price"] * sales_with_items_df["quantity"]
+        sales_with_items_df = sales_with_items_df[["created_at", "product_id", "total_sale"]]
+        sales_with_items_df = sales_with_items_df.groupby(['product_id']).sum()
+        sales_with_items_df = sales_with_items_df.join(self.products_df[["id", "name"]].set_index("id"))
+        sales_with_items_df.reset_index(inplace=True)
 
-        return sales_df
+        return sales_with_items_df
 
     def total_sales_by_month(self):
         return self.mysql_connection

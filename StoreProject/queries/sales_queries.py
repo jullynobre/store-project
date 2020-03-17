@@ -15,7 +15,7 @@ class SalesQueries:
     products_df = pandas_sql.read_sql_query("SELECT id, name FROM products", mysql_connection)
     clients_df = pandas_sql.read_sql_query("SELECT id, name FROM clients", mysql_connection)
 
-    def sales(self, initial_date: datetime = None, final_date: datetime = None):
+    def sales(self, initial_date: datetime = None, final_date: datetime = None, client_id: int = None):
         filtered_sales = self.sales_df
         # where date is after initial_date
         if initial_date:
@@ -23,6 +23,9 @@ class SalesQueries:
         # where date is before final_date
         if final_date:
             filtered_sales = filtered_sales[filtered_sales['created_at'] <= final_date]
+        # where client is equal to
+        if client_id:
+            filtered_sales = filtered_sales[filtered_sales['client_id'] == client_id]
 
         return filtered_sales
 
@@ -31,9 +34,6 @@ class SalesQueries:
         # where product is equal to
         if product_id:
             filtered_sale_items = filtered_sale_items[filtered_sale_items['product_id'] == product_id]
-        # where client is equal to
-        if client_id:
-            filtered_sale_items = filtered_sale_items[filtered_sale_items['client_id'] == client_id]
 
         return filtered_sale_items
 
@@ -51,7 +51,7 @@ class SalesQueries:
         sales_df = self.sales(initial_date, final_date)
         sales_with_items_df = sales_df.set_index("id").join(self.sales_items_df.set_index("sale_id"))
         sales_with_items_df["total_sale"] = sales_with_items_df["price"] * sales_with_items_df["quantity"]
-        sales_with_items_df = sales_with_items_df[["created_at", "product_id", "total_sale"]]
+        sales_with_items_df = sales_with_items_df[["product_id", "total_sale"]]
         sales_with_items_df = sales_with_items_df.groupby(['product_id']).sum()
         sales_with_items_df = sales_with_items_df.join(self.products_df[["id", "name"]].set_index("id"))
         sales_with_items_df.reset_index(inplace=True)
@@ -62,7 +62,11 @@ class SalesQueries:
         return self.mysql_connection
 
     def total_sales_by_client(self):
-        return self.mysql_connection
+        sales_with_items_df = self.sales_df.set_index("id").join(self.sales_items_df.set_index("sale_id"))
+        sales_with_items_df["total_sale"] = sales_with_items_df["price"] * sales_with_items_df["quantity"]
+        sales_with_items_df = sales_with_items_df[["client_id", "total_sale"]]
+        sales_with_items_df = sales_with_items_df.groupby(['client_id']).sum()
+        sales_with_items_df = sales_with_items_df.join(self.clients_df[["id", "name"]].set_index("id"))
+        sales_with_items_df.reset_index(inplace=True)
 
-
-print(SalesQueries().total_sales_by_products('2019-03-28', '2019-04-28'))
+        return sales_with_items_df

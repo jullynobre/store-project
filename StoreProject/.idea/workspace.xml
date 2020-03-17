@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8c5a4e80-0a03-44d4-857a-05cf859ff78b" name="Default Changelist" comment="" />
+    <list default="true" id="8c5a4e80-0a03-44d4-857a-05cf859ff78b" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/queries/sales_queries.py" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,7 +17,13 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
   <component name="ProjectId" id="1YR9wRbaexYNaWcvThW1EUr7gq7" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -22,15 +31,16 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="MTConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/sales" />
       <recent name="$PROJECT_DIR$/DAOs" />
       <recent name="$PROJECT_DIR$/Helpers" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/SQLConnections" />
-      <recent name="$PROJECT_DIR$/DAO" />
     </key>
   </component>
   <component name="RunManager">
@@ -78,10 +88,10 @@
       <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state x="427" y="161" key="FileChooserDialogImpl/0.0.1280.800@0.0.1280.800" timestamp="1583156539810" />
-    <state x="80" y="49" key="SettingsEditor" timestamp="1583798515391">
+    <state x="167" y="43" key="SettingsEditor" timestamp="1584445511036">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state x="80" y="49" key="SettingsEditor/0.0.1280.800@0.0.1280.800" timestamp="1583798515391" />
+    <state x="167" y="43" key="SettingsEditor/0.0.1280.800@0.0.1280.800" timestamp="1584445511036" />
     <state x="289" y="134" width="700" height="530" key="recent.locations.popup" timestamp="1583248581018">
       <screen x="0" y="0" width="1280" height="800" />
     </state>

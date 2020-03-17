@@ -32,6 +32,3 @@ def create_connection_mysql(host_name, user_name, user_password):
     except Error as e:
         print(f"The error '{e}' occurred")
     return connection
-
-# create_connection_mysql("127.0.0.1", "root", "Buster")
-# create_connection_postgres("", "postgres", "12345678", "0.0.0.0", "5432")

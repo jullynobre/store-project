@@ -1,5 +1,5 @@
 import helpers.SQLConnections as connections
-import pandas.io.sql as pandas_sql
+import pandas as pd
 import datetime
 
 
@@ -10,10 +10,10 @@ class SalesQueries:
     mysql_connection.database = "CLIENTS_DB"
 
     # getting data frames
-    sales_df = pandas_sql.read_sql_query("SELECT * FROM sales", postgres_connection)
-    sales_items_df = pandas_sql.read_sql_query("SELECT * FROM sale_items", postgres_connection)
-    products_df = pandas_sql.read_sql_query("SELECT id, name FROM products", mysql_connection)
-    clients_df = pandas_sql.read_sql_query("SELECT id, name FROM clients", mysql_connection)
+    sales_df = pd.io.sql.read_sql_query("SELECT * FROM sales", postgres_connection)
+    sales_items_df = pd.io.sql.read_sql_query("SELECT * FROM sale_items", postgres_connection)
+    products_df = pd.io.sql.read_sql_query("SELECT id, name FROM products", mysql_connection)
+    clients_df = pd.io.sql.read_sql_query("SELECT id, name FROM clients", mysql_connection)
 
     def sales(self, initial_date: datetime = None, final_date: datetime = None, client_id: int = None):
         filtered_sales = self.sales_df
@@ -29,23 +29,14 @@ class SalesQueries:
 
         return filtered_sales
 
-    def sale_items(self, sale_id: int, product_id: int = None, client_id: int = None):
-        filtered_sale_items = self.sales_items_df[self.sales_items_df['sale_id'] == sale_id]
-        # where product is equal to
-        if product_id:
-            filtered_sale_items = filtered_sale_items[filtered_sale_items['product_id'] == product_id]
-
-        return filtered_sale_items
-
     def products_with_sales(self):
-        # query with sale.id, sale.id, sale.date, sale_items.price * sale_items.quantity, product.id, product.name
-        sales_join_items = self.sales_df.set_index("id").join(self.sales_items_df.set_index("sale_id"))
-        sales_join_items = sales_join_items[["id", "created_at", "product_id", "price", "quantity"]]
-        sales_join_items["total_price"] = sales_join_items["price"] * sales_join_items["quantity"]
-        sales_join_items_join_products = sales_join_items.set_index("product_id") \
+        sales_with_items_df = self.sales_df.set_index("id").join(self.sales_items_df.set_index("sale_id"))
+        sales_with_items_df = sales_with_items_df[["id", "created_at", "product_id", "price", "quantity"]]
+        sales_with_items_df["total_price"] = sales_with_items_df["price"] * sales_with_items_df["quantity"]
+        sales_with_items_df = sales_with_items_df.set_index("product_id") \
             .join(self.products_df[["id", "name"]].set_index("id"))
 
-        return sales_join_items_join_products
+        return sales_with_items_df
 
     def total_sales_by_products(self, initial_date: datetime, final_date: datetime):
         sales_df = self.sales(initial_date, final_date)
@@ -59,13 +50,20 @@ class SalesQueries:
         return sales_with_items_df
 
     def total_sales_by_month(self):
-        return self.mysql_connection
+        sales_with_items_df = self.sales_df.set_index("id").join(self.sales_items_df.set_index("sale_id"))
+        sales_with_items_df["total_sale"] = sales_with_items_df["price"] * sales_with_items_df["quantity"]
+        sales_with_items_df["Month/Year"] = pd.to_datetime(sales_with_items_df['created_at']).dt.to_period('M')
+        sales_with_items_df = sales_with_items_df[["Month/Year", "total_sale"]]
+        sales_with_items_df = sales_with_items_df.groupby(["Month/Year"]).sum()
+        sales_with_items_df.reset_index(inplace=True)
+
+        return sales_with_items_df
 
     def total_sales_by_client(self):
         sales_with_items_df = self.sales_df.set_index("id").join(self.sales_items_df.set_index("sale_id"))
         sales_with_items_df["total_sale"] = sales_with_items_df["price"] * sales_with_items_df["quantity"]
         sales_with_items_df = sales_with_items_df[["client_id", "total_sale"]]
-        sales_with_items_df = sales_with_items_df.groupby(['client_id']).sum()
+        sales_with_items_df = sales_with_items_df.groupby(["client_id"]).sum()
         sales_with_items_df = sales_with_items_df.join(self.clients_df[["id", "name"]].set_index("id"))
         sales_with_items_df.reset_index(inplace=True)
 

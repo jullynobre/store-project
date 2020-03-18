@@ -1,12 +1,10 @@
 # Store Project
 
-## Configuring the enviroment
-
 ### Initial Requirements
 Python 3.7
 Anaconda
 
-### Configuring the enviroment
+## Configuring the enviroment
 Install pip for conda
 ```
 conda install pip

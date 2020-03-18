@@ -2,6 +2,30 @@
 
 ## Configuring the enviroment
 
+### Initial Requirements
+Anaconda
+
+### Configuring the enviroment
+Install pip for conda
+```
+conda install pip
+```
+
+Create the env with pip
+```
+conda create -n condenv pip
+```
+
+Activate the env
+```
+conda activate condenv
+```
+
+Install requirements
+```
+pip install requirements.txt
+```
+
 ## Using the queries
 
 ### Products with sales

@@ -1,3 +1,12 @@
-pandas
-mysql-connector-python
+certifi==2019.11.28
+mkl-fft==1.0.15
+mkl-random==1.1.0
+mkl-service==2.3.0
+mysql-connector-python==8.0.18
+numpy==1.18.1
+pandas==1.0.1
+protobuf==3.6.0
 psycopg2==2.8.2
+python-dateutil==2.8.1
+pytz==2019.3
+six==1.14.0

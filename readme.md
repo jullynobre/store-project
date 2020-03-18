@@ -10,20 +10,20 @@ Returns a join with all sales and their products
 python queries/manager.py products-with-sales
 ```
 
-### Products with sales
-Returns a join with all sales and their products
+### Total sales by month
+Returns a total sum of the sales (in R$) grouped by months.
 ```
-python queries/manager.py products-with-sales
-```
-
-### Products with sales
-Returns a join with all sales and their products
-```
-python queries/manager.py products-with-sales
+python queries/manager.py total-sales-by-month
 ```
 
-### Products with sales
-Returns a join with all sales and their products
+### Total sales by client
+Returns a total sum of the sales (in R$) grouped by clients.
 ```
-python queries/manager.py products-with-sales
+python queries/manager.py total-sales-by-client
+```
+
+### Total sales by products (with filter by period)
+Returns a total sum of the sales (in R$) with are made within the informed period, grouped by products.
+```
+python queries/manager.py total-sales-by-products 2018-01-01 2019-01-01
 ```

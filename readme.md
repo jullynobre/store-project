@@ -3,6 +3,7 @@
 ## Configuring the enviroment
 
 ### Initial Requirements
+Python 3.7
 Anaconda
 
 ### Configuring the enviroment

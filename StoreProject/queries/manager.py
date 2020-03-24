@@ -1,8 +1,10 @@
-import queries.sales_queries as sales_queries
+from queries.sales_queries import SalesQueries
 import sys
 
 
 def main(args):
+    sales_queries = SalesQueries()
+
     if args[0] == "products-with-sales":
         return sales_queries.products_with_sales()
     elif args[0] == "total-sales-by-month":

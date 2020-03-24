@@ -1,10 +1,17 @@
 # Store Project
 
+## About implementation
+![Data flow](https://github.com/jullynobre/store-project/blob/readme/docs/data-flow.png)
+
+The project queries are executed once a day and the data is published to the RabbitMQ queue, where the client services can consume the data.
+
+## Configuring the enviroment
+
 ### Initial Requirements
 Python 3.7
 Anaconda
 
-## Configuring the enviroment
+### Installation
 Install pip for conda
 ```
 conda install pip

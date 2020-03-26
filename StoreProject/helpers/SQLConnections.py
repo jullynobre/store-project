@@ -2,33 +2,39 @@ import psycopg2
 from psycopg2 import OperationalError
 import mysql.connector
 from mysql.connector import Error
+from decouple import config
 
 
-def create_connection_postgres(db_name, db_user, db_password, db_host, db_port):
-    connection = None
-    try:
-        connection = psycopg2.connect(
-            dbname=db_name,
-            user=db_user,
-            password=db_password,
-            host=db_host,
-            port=db_port
-        )
-        print("Connection successful")
-    except OperationalError as error:
-        print(f"The error '{error}' occurred")
-    return connection
+class Connections:
 
+    @property
+    def postgres_connection(self):
+        connection = None
+        print(config("PSQL_USER"), config("PSQL_PASSWORD"), config("PSQL_HOST"), config("PSQL_PORT"))
+        try:
+            connection = psycopg2.connect(
+                dbname="",
+                user=config("PSQL_USER"),
+                password=config("PSQL_PASSWORD"),
+                host=config("PSQL_HOST"),
+                port=config("PSQL_PORT")
+            )
+            print("Connection successful")
+        except OperationalError as error:
+            print(f"The error '{error}' occurred")
+        return connection
 
-def create_connection_mysql(host_name, user_name, user_password):
-    connection = None
-    try:
-        connection = mysql.connector.connect(
-            host=host_name,
-            user=user_name,
-            password=user_password
-        )
-        print("Connection Successful")
-    except Error as e:
-        print(f"The error '{e}' occurred")
-    return connection
+    @property
+    def mysql_connection(self):
+        connection = None
+        try:
+            connection = mysql.connector.connect(
+                host=config("MYSQL_HOST"),
+                user=config("MYSQL_USER"),
+                password=config("MYSQL_PASSWORD")
+            )
+            connection.database = config("MYSQL_DATABASE")
+            print("Connection Successful")
+        except Error as e:
+            print(f"The error '{e}' occurred")
+        return connection

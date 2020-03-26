@@ -1,13 +1,13 @@
-import helpers.SQLConnections as connections
+from helpers.SQLConnections import Connections
 import pandas as pd
 import datetime
 
 
 class SalesQueries:
     # creating connections
-    postgres_connection = connections.create_connection_postgres("", "postgres", "12345678", "0.0.0.0", "5432")
-    mysql_connection = connections.create_connection_mysql("127.0.0.1", "root", "Buster")
-    mysql_connection.database = "CLIENTS_DB"
+    connections = Connections()
+    postgres_connection = connections.postgres_connection
+    mysql_connection = connections.mysql_connection
 
     # getting data frames
     sales_df = pd.io.sql.read_sql_query("SELECT * FROM sales", postgres_connection)

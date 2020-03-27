@@ -1,4 +1,4 @@
-from helpers.SQLConnections import Connections
+from helpers.connections import Connections
 import pandas as pd
 import datetime
 

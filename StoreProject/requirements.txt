@@ -1,3 +1,4 @@
+pika
 decouple
 certifi==2019.11.28
 mkl-fft==1.0.15

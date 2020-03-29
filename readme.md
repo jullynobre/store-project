@@ -8,7 +8,7 @@ The project queries are executed once a day and the data is published to the Rab
 ## Configuring the enviroment
 
 ### Initial Requirements
-Python 3.7
+Python 3.7  
 Anaconda
 
 ### Installation
@@ -31,6 +31,24 @@ Install requirements
 ```
 pip install requirements.txt
 ```
+
+### Configuring the enviroment variables
+On file [.env.example](.env.example) are the needed env variables for rurring the application.  
+
+```
+PSQL_USER=root
+PSQL_PASSWORD=12345678
+PSQL_PORT=1234
+PSQL_HOST=0.0.0.0
+
+MYSQL_USER=root
+MYSQL_HOST=0.0.0.0
+MYSQL_PASSWORD=12345678
+MYSQL_DATABASE=CLIENTS_DB
+
+SYSTEM_USERNAME=rootuser
+```
+Modify their values with valid data and rename the file to ".env".
 
 ## Using the queries
 

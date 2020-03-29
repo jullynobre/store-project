@@ -3,8 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="8c5a4e80-0a03-44d4-857a-05cf859ff78b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helpers/SQLConnections.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/queries/sales_queries.py" beforeDir="false" afterPath="$PROJECT_DIR$/queries/sales_queries.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Helpers/connections.py" beforeDir="false" afterPath="$PROJECT_DIR$/Helpers/connections.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Helpers/rabbit_publisher.py" beforeDir="false" afterPath="$PROJECT_DIR$/Helpers/rabbit_publisher.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/queries/manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/queries/manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schedule_queries.py" beforeDir="false" afterPath="$PROJECT_DIR$/schedule_queries.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,10 +40,10 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/sales" />
       <recent name="$PROJECT_DIR$/DAOs" />
       <recent name="$PROJECT_DIR$/Helpers" />
-      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/SQLConnections" />
     </key>
   </component>

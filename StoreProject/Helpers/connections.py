@@ -10,7 +10,6 @@ class Connections:
     @property
     def postgres_connection(self):
         connection = None
-        print(config("PSQL_USER"), config("PSQL_PASSWORD"), config("PSQL_HOST"), config("PSQL_PORT"))
         try:
             connection = psycopg2.connect(
                 dbname="",

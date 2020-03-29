@@ -14,4 +14,4 @@ class RabbitPublisher:
         connection.close()
 
 
-RabbitPublisher().queue_message("HELLO, RABBIT")
+# RabbitPublisher().queue_message("HELLO, RABBIT")
